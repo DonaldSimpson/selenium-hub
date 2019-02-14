@@ -17,10 +17,12 @@ ENV GRID_UNREGISTER_IF_STILL_DOWN_AFTER 30000
 
 COPY generate_config /app/selenium/generate_config
 COPY config.json /app/selenium/config.json
-COPY entry_point.sh /app/bin/entry_point.sh
+COPY entry_point.sh /opt/bin/entry_point.sh
 COPY selenium-server-standalone-2.53.1.jar /app/selenium/selenium-server-standalone.jar
 COPY tini /bin/
 RUN chmod +x /bin/tini
+RUN chmod +x /opt/bin/entry_point.sh
+
 
 ### Entry point:
 ENTRYPOINT ["/bin/tini", "--", "/opt/bin/entry_point.sh"]
